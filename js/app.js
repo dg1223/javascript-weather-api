@@ -9,9 +9,30 @@ const loadTemperature = (city) => {
 };
 
 const displayTemperature = (data) => {
-  const temperature = document.getElementById("temperature");
-  console.log(data.main.temp);
-  temperature.innerText = `${data.main.temp}`;
+  // const temperature = document.getElementById("temperature");
+  console.log(data.name, data.main.temp);
+  // temperature.innerText = `${data.main.temp}`;
+
+  setInnerText("temperature", data.main.temp);
+  setInnerText("weather", data.weather[0].main);
 };
+
+const setInnerText = (id, text) => {
+  const element = document.getElementById(id);
+  element.innerText = `${text}`;
+  console.log(text);
+};
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  const searchField = document.getElementById("search-field");
+  // set city
+  const city = searchField.value;
+  document.getElementById("city").innerText = city;
+  //set weather
+  // const weather = data.weather[0].main;
+  document.getElementById("weather").innerText = weather;
+
+  loadTemperature(city);
+});
 
 loadTemperature("dhaka");
